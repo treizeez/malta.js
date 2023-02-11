@@ -9,13 +9,11 @@ export function State(arg) {
     if (value !== initialValue) {
       initialValue = value;
       Array.from(subscribers).map((value) => {
-        if (value.root?.$component) {
-          VDom.update({
-            current: value.root?.$current,
-            next: value.root?.$component(),
-            el: value.root,
-          });
-        }
+        VDom.update({
+          current: value.$current,
+          next: value.$component(),
+          el: value,
+        });
       });
     }
   }

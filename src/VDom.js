@@ -6,31 +6,32 @@ const isFunction = (arg) => (typeof arg === "function" ? arg() : arg);
 export class VDom {
   static mount(nodes) {
     return nodes.map((node) => {
-      const context = {};
+      let context;
 
       if (typeof node === "function") {
         node.root = context;
       }
 
-      const withContext = typeof node === "function" && node.bind(context); //binding dom to vdom component
-
-      const component = withContext ? withContext() : node; //check if component is a function or object
+      const component = typeof node === "function" ? node() : node; //check if component is a function or object
 
       if (component) {
-        context.root = new Dom(component).init();
+        context = new Dom(component).init();
 
-        context.root.$component = node; //binding vdom component to dom
+        context.$component = node; //binding vdom component to dom
 
-        context.root.$current = component;
+        context.$current = component;
 
-        //if vdom node has child, executing recursive function
+        if (typeof node === "function") {
+          node.apply(context, []);
+        }
         if (component?.content) {
+          //if vdom node has child, executing recursive function
           this.mount(component.content).map(
-            (content) => content && context.root.appendChild(content) //append new child node to a parent node
+            (content) => content && context.appendChild(content) //append new child node to a parent node
           );
         }
 
-        return context.root;
+        return context;
       }
     });
   }
@@ -46,17 +47,15 @@ export class VDom {
           el.removeChild(el.children[i]);
         }
 
-        let component = next.content[i];
-
         if (typeof next.content[i] === "function") {
           el.children[i].$component = next.content[i];
-          component = next.content[i].bind({ root: el.children[i] });
+          next.content[i].apply(el.children[i], []);
         }
 
         if (el.children[i]) {
           this.update({
             current: el.children[i].$current,
-            next: isFunction(component),
+            next: isFunction(next.content[i]),
             el: el.children[i],
           });
         }
