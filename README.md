@@ -1,4 +1,4 @@
-![Preact](https://github.com/treizeez/malta.js/blob/main/rep/images/header.png "Preact")
+![Malta](https://github.com/treizeez/malta.js/blob/main/rep/images/header.png "Malta")
 
 # Malta.js
 
