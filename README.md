@@ -1,6 +1,6 @@
 # Malta.js
 
-- [What is Malta.js?](#what-is-mithriljs?)
+- [What is Malta.js?](#what-is-malta.js?)
 - [Installation](#installation)
 
 ## What is Malta.js?
