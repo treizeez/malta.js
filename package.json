@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/treizeez/malta.js.git"
@@ -22,5 +25,8 @@
   "homepage": "https://github.com/treizeez/malta.js#readme",
   "dependencies": {
     "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "typedoc": "^0.23.25"
   }
 }
