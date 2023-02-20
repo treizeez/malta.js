@@ -1,3 +1,5 @@
+![Preact](https://github.com/treizeez/malta.js/blob/main/rep/images/header.png "Preact")
+
 # Malta.js
 
 - [What is Malta.js?](#what-is-malta.js?)
