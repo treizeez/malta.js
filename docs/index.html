@@ -12,7 +12,58 @@
 <div class="col-8 col-content">
 <div class="tsd-page-title">
 <h2>malta-js</h2></div>
-<div class="tsd-panel tsd-typography"></div></div>
+<div class="tsd-panel tsd-typography"><p><img src="https://github.com/treizeez/malta.js/blob/main/rep/images/header.png" alt="Malta" title="Malta"></p>
+
+<a href="#maltajs" id="maltajs" style="color: inherit; text-decoration: none;">
+  <h1>Malta.js</h1>
+</a>
+<ul>
+<li><a href="#%F0%9F%92%81-what-is-malta.js?">What is Malta.js?</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB-getting-started">Getting started</a></li>
+</ul>
+
+<a href="#💁-what-is-maltajs" id="💁-what-is-maltajs" style="color: inherit; text-decoration: none;">
+  <h2>💁 What is Malta.js?</h2>
+</a>
+<p>A tiny (<!-- size -->2.1 KB<!-- /size --> gzipped) client-side JavaScript framework for building Single Page Applications that helps developers to create reusable components with ease. Its reactive architecture allows you to update your UI in real-time as your data changes.</p>
+<p>One of the standout features of Malta.js is its support for CSS-in-JS, which allows you to write styles for your components directly in your JavaScript code. This approach can simplify your development process, make your code more maintainable, and lead to faster rendering times.</p>
+<p>Unlike some other frameworks, Malta.js does not rely on JSX or similar technologies. Instead, it allows you to create components using JavaScript objects.</p>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+
+<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
+  <h3>npm</h3>
+</a>
+<pre><code class="language-bash"><span class="hl-0">npm </span><span class="hl-1">install</span><span class="hl-0"> </span><span class="hl-1">malta-js</span><span class="hl-0"> </span><span class="hl-1">--save</span>
+</code></pre>
+
+<a href="#👨💻-getting-started" id="👨💻-getting-started" style="color: inherit; text-decoration: none;">
+  <h2>👨‍💻 Getting started</h2>
+</a>
+
+<a href="#tutorial-building-ui-with-malta" id="tutorial-building-ui-with-malta" style="color: inherit; text-decoration: none;">
+  <h4>Tutorial: Building UI with Malta</h4>
+</a>
+<p>In this example, we define a simple object called App which contains the tag and textNode properties. The tag property specifies the HTML tag that we want to render, and the textNode property specifies the text content that we want to display.</p>
+<p>To render this application using MaltaJS, we can use the Malta.RenderDOM function. This function takes two arguments: the first argument is the application object that we want to render, and the second argument (optional) is the root HTML element where we want to render the application.</p>
+<p>In this example, we are not providing the second argument, so the application will be rendered on the document body by default. If you want to render the application in a specific element, you can pass that element as the second argument to the RenderDOM function.</p>
+<pre><code class="language-js"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">Malta</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-1">&quot;malta-js&quot;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">App</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-3">tag:</span><span class="hl-0"> </span><span class="hl-1">&quot;h1&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-3">textNode:</span><span class="hl-0"> </span><span class="hl-1">&quot;Hello world&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">};</span><br/><br/><span class="hl-3">Malta</span><span class="hl-0">.</span><span class="hl-6">RenderDOM</span><span class="hl-0">(</span><span class="hl-3">App</span><span class="hl-0">);</span>
+</code></pre>
+<p>In addition to rendering a single object, the Malta.RenderDOM function can also take an array of objects as an argument.</p>
+<p>When an array is passed to the RenderDOM function, it will render each object in the array as a separate element. This is useful when you want to render a list or a collection of elements.</p>
+<pre><code class="language-js"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">Malta</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-1">&quot;malta-js&quot;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">list</span><span class="hl-0"> = [</span><br/><span class="hl-0">  { </span><span class="hl-3">tag:</span><span class="hl-0"> </span><span class="hl-1">&quot;li&quot;</span><span class="hl-0">, </span><span class="hl-3">attrs:</span><span class="hl-0"> { </span><span class="hl-3">id:</span><span class="hl-0"> </span><span class="hl-1">&quot;i1&quot;</span><span class="hl-0"> }, </span><span class="hl-3">textNode:</span><span class="hl-0"> </span><span class="hl-1">&quot;Item 1&quot;</span><span class="hl-0"> },</span><br/><span class="hl-0">  { </span><span class="hl-3">tag:</span><span class="hl-0"> </span><span class="hl-1">&quot;li&quot;</span><span class="hl-0">, </span><span class="hl-3">attrs:</span><span class="hl-0"> { </span><span class="hl-3">id:</span><span class="hl-0"> </span><span class="hl-1">&quot;i1&quot;</span><span class="hl-0"> }, </span><span class="hl-3">textNode:</span><span class="hl-0"> </span><span class="hl-1">&quot;Item 2&quot;</span><span class="hl-0"> },</span><br/><span class="hl-0">  { </span><span class="hl-3">tag:</span><span class="hl-0"> </span><span class="hl-1">&quot;li&quot;</span><span class="hl-0">, </span><span class="hl-3">attrs:</span><span class="hl-0"> { </span><span class="hl-3">id:</span><span class="hl-0"> </span><span class="hl-1">&quot;i1&quot;</span><span class="hl-0"> }, </span><span class="hl-3">textNode:</span><span class="hl-0"> </span><span class="hl-1">&quot;Item 3&quot;</span><span class="hl-0"> },</span><br/><span class="hl-0">];</span><br/><br/><span class="hl-3">Malta</span><span class="hl-0">.</span><span class="hl-6">RenderDOM</span><span class="hl-0">(</span><span class="hl-3">list</span><span class="hl-0">, </span><span class="hl-3">document</span><span class="hl-0">.</span><span class="hl-6">getElementById</span><span class="hl-0">(</span><span class="hl-1">&quot;root&quot;</span><span class="hl-0">));</span>
+</code></pre>
+<p>In this example, we are using the State function provided by Malta to manage a counter value. The State function takes an initial value (in this case, 0) and returns an array containing two elements: the current value of the state and a function to update the state.</p>
+<p>We then define a button component that increments the counter value when it is clicked. The onclick attribute of the button is set to an arrow function that calls the setCounter function with the previous value of the counter (using the functional form of setState).</p>
+<p>Next, we define a Label function component that displays the current value of the counter. This component uses the counter function (which is the first element of the array returned by State) to access and display the current counter value.</p>
+<p>Note that the Label function is defined as a regular (non-arrow) function. This is because we want to use the this keyword inside the function to refer to the counter function, which is a property of the function object. If we used an arrow function, the this keyword would refer to the global object instead of the function object.</p>
+<p>Finally, we pass an array containing the button and Label components to the RenderDOM function. When the button is clicked, the counter value is updated and the Label component is re-rendered with the new value. The updated UI is then displayed in the browser.</p>
+<pre><code class="language-js"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">Malta</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-1">&quot;malta-js&quot;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> [</span><span class="hl-5">counter</span><span class="hl-0">, </span><span class="hl-5">setCounter</span><span class="hl-0">] = </span><span class="hl-3">Malta</span><span class="hl-0">.</span><span class="hl-6">State</span><span class="hl-0">(</span><span class="hl-7">0</span><span class="hl-0">);</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">button</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-3">tag:</span><span class="hl-0"> </span><span class="hl-1">&quot;button&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-3">textNode:</span><span class="hl-0"> </span><span class="hl-1">&quot;click&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-6">onclick</span><span class="hl-3">:</span><span class="hl-0"> () </span><span class="hl-4">=&gt;</span><span class="hl-0"> </span><span class="hl-6">setCounter</span><span class="hl-0">((</span><span class="hl-3">prev</span><span class="hl-0">) </span><span class="hl-4">=&gt;</span><span class="hl-0"> </span><span class="hl-3">prev</span><span class="hl-0"> + </span><span class="hl-7">1</span><span class="hl-0">),</span><br/><span class="hl-0">};</span><br/><br/><span class="hl-4">function</span><span class="hl-0"> </span><span class="hl-6">Label</span><span class="hl-0">() {</span><br/><span class="hl-0">  </span><span class="hl-6">counter</span><span class="hl-0">(</span><span class="hl-4">this</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-2">return</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-3">tag:</span><span class="hl-0"> </span><span class="hl-1">&quot;h1&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">textNode:</span><span class="hl-0"> </span><span class="hl-1">`You clicked </span><span class="hl-4">${</span><span class="hl-6">counter</span><span class="hl-8">()</span><span class="hl-4">}</span><span class="hl-1"> times`</span><span class="hl-0">,</span><br/><span class="hl-0">  };</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-3">Malta</span><span class="hl-0">.</span><span class="hl-6">RenderDOM</span><span class="hl-0">([</span><span class="hl-3">button</span><span class="hl-0">, </span><span class="hl-3">Label</span><span class="hl-0">]);</span>
+</code></pre>
+</div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -36,7 +87,9 @@
 <ul></ul></li></ul></div></details></nav>
 <nav class="tsd-navigation secondary menu-sticky">
 <ul>
-<li class="tsd-kind-class"><a href="classes/Malta.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-128-path"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)" id="icon-128-text"></path></svg>Malta</a></li></ul></nav></div></div>
+<li class="tsd-kind-function"><a href="functions/MakeEffect.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>Make<wbr/>Effect</a></li>
+<li class="tsd-kind-function"><a href="functions/Render.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>Render</a></li>
+<li class="tsd-kind-function"><a href="functions/State.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>State</a></li></ul></nav></div></div>
 <div class="container tsd-generator">
 <p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
 <div class="overlay"></div><script src="assets/main.js"></script></body></html>

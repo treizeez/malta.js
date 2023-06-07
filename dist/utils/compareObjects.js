@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.compareObjects = void 0;
+exports.isFunction = exports.compareObjects = void 0;
 const compareObjects = (o1, o2) => {
     let same = true;
     for (const key in o1) {
@@ -14,4 +14,6 @@ const compareObjects = (o1, o2) => {
     return same;
 };
 exports.compareObjects = compareObjects;
+const isFunction = (arg) => (typeof arg === "function" ? arg() : arg);
+exports.isFunction = isFunction;
 //# sourceMappingURL=compareObjects.js.map

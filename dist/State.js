@@ -1,7 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.State = void 0;
+exports.State = exports.StateStack = void 0;
 const VDom_1 = require("./VDom");
+class StateStack {
+    static get stack() {
+        return this.data;
+    }
+    static push(component) {
+        this.data.add(component);
+    }
+    static reset() {
+        this.data.clear();
+    }
+    static setContext(context) {
+        for (const state of this.data) {
+            state.apply(context);
+        }
+    }
+}
+exports.StateStack = StateStack;
+StateStack.data = new Set();
 function State(arg) {
     const subscribers = new Set();
     const callbacks = new Set();
@@ -17,21 +35,24 @@ function State(arg) {
             else {
                 initialValue = value;
             }
-            for (const el of subscribers) {
-                const component = el.$component;
+            for (const dom of subscribers) {
+                const component = dom.el.$component;
                 if (component) {
+                    const next = component();
                     VDom_1.VDom.update({
-                        current: el.$current,
-                        next: component(),
-                        el,
+                        current: dom.el.$current,
+                        next,
+                        el: dom.el,
                     });
+                    StateStack.reset();
                 }
             }
         }
     }
-    function getState(context) {
-        if (context) {
-            subscribers.add(context);
+    function getState() {
+        StateStack.push(getState);
+        if (this) {
+            subscribers.add(this);
         }
         return initialValue;
     }

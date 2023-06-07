@@ -18,13 +18,13 @@ exports.generateName = generateName;
 const formatRule = (name, rules) => {
     var _a, _b;
     const formattedRules = [];
+    formattedRules.push(`.${name}{${rules.main}}`);
     if (((_a = rules === null || rules === void 0 ? void 0 : rules.queries) === null || _a === void 0 ? void 0 : _a.length) > 0) {
         rules.queries.forEach((q) => formattedRules.push(`${q.type}{${formatRule(name, q.rule).join("")}}`));
     }
     if (((_b = rules === null || rules === void 0 ? void 0 : rules.pseudo) === null || _b === void 0 ? void 0 : _b.length) > 0) {
         rules.pseudo.forEach((p) => formattedRules.push(`.${name}${p.type}{${p.rule}}`));
     }
-    formattedRules.push(`.${name}{${rules.main}}`);
     return formattedRules;
 };
 const createCssClass = (rules) => {

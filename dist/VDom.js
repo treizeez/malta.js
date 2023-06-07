@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VDom = void 0;
+const State_1 = require("./State");
 const compareObjects_1 = require("./utils/compareObjects");
 const Dom_1 = require("./Dom");
-const isFunction = (arg) => (typeof arg === "function" ? arg() : arg);
 class VDom {
     static mount(node) {
-        const dom = new Dom_1.Dom({ node: isFunction(node) });
+        const dom = new Dom_1.Dom({ node: (0, compareObjects_1.isFunction)(node) });
         if (dom.node) {
             dom.create();
             if (typeof node === "function") {
                 dom.el.$component = node;
-                node.call(dom.el);
+                State_1.StateStack.setContext(dom);
             }
             dom.setAttributes();
             dom.textNode();
@@ -31,6 +31,7 @@ class VDom {
                     mounted && dom.el.appendChild(mounted);
                 }
             }
+            State_1.StateStack.reset();
             return dom.el;
         }
     }
@@ -55,7 +56,7 @@ class VDom {
                 if (el.children[i]) {
                     this.update({
                         current: el.children[i].$current,
-                        next: isFunction(nextContent),
+                        next: (0, compareObjects_1.isFunction)(nextContent),
                         el: el.children[i],
                     });
                 }
@@ -73,12 +74,12 @@ class VDom {
         if (!isStyleSame) {
             updatedDom.style();
         }
-        if (textNode) {
+        if (textNode && typeof textNode !== "boolean") {
             if ((current === null || current === void 0 ? void 0 : current.textNode) !== textNode) {
                 const nodes = el === null || el === void 0 ? void 0 : el.childNodes;
                 for (const i in nodes) {
                     if (nodes[i].nodeName === "#text") {
-                        nodes[i].nodeValue = textNode;
+                        nodes[i].nodeValue = String(textNode);
                     }
                 }
             }

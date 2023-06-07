@@ -2,8 +2,8 @@ export declare type MaltaElement =
   | {
       [key in `on${keyof GlobalEventHandlersEventMap}`]?: (event: Event) => any;
     } & {
-      tag: keyof HTMLElementTagNameMap;
-      textNode?: string;
+      tag: keyof HTMLElementTagNameMap | keyof SVGElementTagNameMap;
+      textNode?: string | boolean | Number;
       attrs?:
         | Partial<
             | HTMLElement
@@ -52,7 +52,9 @@ export declare type MaltaElement =
 
 export declare interface MaltaDom extends HTMLElement {
   $component?: Function;
+  $memo?: { state?: { execSchedule: number; values: Map<number, any> } };
   $current: MaltaElement;
+  $renderCount?: number;
   children: HTMLCollectionOf<MaltaDom>;
 }
 type PseudoClass =

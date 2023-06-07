@@ -1,16 +1,11 @@
 import { CssInJs } from "./CssEngine";
 import { MaltaElement, MaltaDom } from "./types";
 
-interface domConstructor {
-  node?: MaltaElement;
-  el?: MaltaDom;
-}
-
 export class Dom {
   public node: MaltaElement;
   public el: MaltaDom;
 
-  constructor({ node, el }: domConstructor) {
+  constructor({ node, el }: { node?: MaltaElement; el?: MaltaDom }) {
     if (node) {
       this.node = node;
     }
@@ -37,8 +32,8 @@ export class Dom {
 
   textNode() {
     const textNode = this.node?.textNode;
-    if (textNode) {
-      const text = document.createTextNode(textNode);
+    if (textNode && typeof textNode !== "boolean") {
+      const text = document.createTextNode(String(textNode));
       this.el.appendChild(text);
     }
   }
@@ -61,6 +56,15 @@ export class Dom {
           CssInJs.inline(this.node.style).main
         );
       }
+
+      const classList = this.el.classList;
+
+      classList.forEach((name) => {
+        if (name.startsWith("malta")) {
+          return classList.remove(name);
+        }
+      });
+
       const css = CssInJs.toCss(this.node?.style);
       return this.el.classList.add(css);
     }

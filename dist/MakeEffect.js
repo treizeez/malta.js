@@ -15,7 +15,9 @@ const MakeEffect = (callback, deps) => {
             });
         }
     };
-    return deps.forEach((dep) => dep.effect && dep.effect(effectCallback));
+    return deps.forEach((dep) => {
+        dep.effect && dep.effect(effectCallback);
+    });
 };
 exports.MakeEffect = MakeEffect;
 //# sourceMappingURL=MakeEffect.js.map

@@ -28,8 +28,8 @@ class Dom {
     textNode() {
         var _a;
         const textNode = (_a = this.node) === null || _a === void 0 ? void 0 : _a.textNode;
-        if (textNode) {
-            const text = document.createTextNode(textNode);
+        if (textNode && typeof textNode !== "boolean") {
+            const text = document.createTextNode(String(textNode));
             this.el.appendChild(text);
         }
     }
@@ -48,6 +48,12 @@ class Dom {
             if (this.node.style["inline"]) {
                 return this.el.setAttribute("style", CssEngine_1.CssInJs.inline(this.node.style).main);
             }
+            const classList = this.el.classList;
+            classList.forEach((name) => {
+                if (name.startsWith("malta")) {
+                    return classList.remove(name);
+                }
+            });
             const css = CssEngine_1.CssInJs.toCss((_a = this.node) === null || _a === void 0 ? void 0 : _a.style);
             return this.el.classList.add(css);
         }

@@ -1,10 +1,33 @@
+import { Dom } from "./Dom";
 import { MaltaDom } from "./types";
 import { VDom } from "./VDom";
 
+export class StateStack {
+  private static data: Set<Function> = new Set();
+
+  public static get stack(): Set<Function> {
+    return this.data;
+  }
+
+  public static push(component: Function): void {
+    this.data.add(component);
+  }
+
+  public static reset(): void {
+    this.data.clear();
+  }
+
+  public static setContext(context: Dom): void {
+    for (const state of this.data) {
+      state.apply(context);
+    }
+  }
+}
+
 export function State<T>(
   arg: T
-): [(context?: MaltaDom) => T, (value: T | ((prev: T) => T)) => void] {
-  const subscribers: Set<MaltaDom> = new Set();
+): [() => T, (value: T | ((prev: T) => T)) => void] {
+  const subscribers: Set<Dom> = new Set();
   const callbacks: Set<Function> = new Set();
 
   let initialValue: T = arg;
@@ -14,28 +37,34 @@ export function State<T>(
       for (const callback of callbacks) {
         callback();
       }
+
       if (typeof value === "function") {
         initialValue = (value as (prev: T) => T)(initialValue);
       } else {
         initialValue = value;
       }
-      for (const el of subscribers) {
-        const component = el.$component;
+
+      for (const dom of subscribers) {
+        const component = dom.el.$component;
         if (component) {
+          const next = component();
           VDom.update({
-            current: el.$current,
-            next: component(),
-            el,
+            current: dom.el.$current,
+            next,
+            el: dom.el,
           });
+          StateStack.reset();
         }
       }
     }
   }
 
-  function getState(context?: MaltaDom): T {
-    if (context) {
-      subscribers.add(context);
+  function getState(): T {
+    StateStack.push(getState);
+    if (this) {
+      subscribers.add(this);
     }
+
     return initialValue;
   }
 

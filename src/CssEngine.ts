@@ -32,6 +32,8 @@ export const generateName = (length) => {
 const formatRule = (name: string, rules: Rules) => {
   const formattedRules: string[] = [];
 
+  formattedRules.push(`.${name}{${rules.main}}`);
+
   if (rules?.queries?.length > 0) {
     rules.queries.forEach((q) =>
       formattedRules.push(`${q.type}{${formatRule(name, q.rule).join("")}}`)
@@ -43,8 +45,6 @@ const formatRule = (name: string, rules: Rules) => {
       formattedRules.push(`.${name}${p.type}{${p.rule}}`)
     );
   }
-
-  formattedRules.push(`.${name}{${rules.main}}`);
 
   return formattedRules;
 };

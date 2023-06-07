@@ -1,13 +1,11 @@
 {
   "name": "malta-js",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A tiny reactive JS framework",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "compile": "npx tsc && webpack && npx typedoc src/index.ts",
+    "prod": "git init && git add . && git commit -am 'prod' && git push origin main && npm publish"
   },
   "repository": {
     "type": "git",
@@ -17,7 +15,8 @@
   "license": "ISC",
   "types": "dist/index.d.ts",
   "files": [
-    "/dist"
+    "/dist",
+    "/umd"
   ],
   "bugs": {
     "url": "https://github.com/treizeez/malta.js/issues"
@@ -27,6 +26,13 @@
     "typescript": "^4.9.5"
   },
   "devDependencies": {
-    "typedoc": "^0.23.25"
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.2",
+    "terser": "^5.16.5",
+    "ts-loader": "^9.4.2",
+    "typedoc": "^0.23.25",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }

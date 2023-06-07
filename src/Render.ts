@@ -7,10 +7,11 @@ export const Render = (
   root: HTMLElement = document.body
 ): void => {
   if (Array.isArray(component)) {
-    return component.forEach((node) => {
+    component.forEach((node) => {
       const mounted = VDom.mount(node);
       mounted && root.appendChild(mounted);
     });
+    return;
   }
 
   const mounted = VDom.mount(component);

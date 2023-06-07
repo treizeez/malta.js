@@ -13,3 +13,5 @@ export const compareObjects = (o1, o2) => {
 
   return same;
 };
+
+export const isFunction = (arg) => (typeof arg === "function" ? arg() : arg);
