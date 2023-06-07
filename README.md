@@ -20,7 +20,7 @@ Unlike some other frameworks, Malta.js does not rely on JSX or similar technolog
 
 I am continuously working on improving and adding new features to the library. While I strive to maintain stability, there might be breaking changes in future versions as I refine the API and functionality.
 
-If you encounter any issues or have suggestions for improvements, please don't hesitate to [open an issue](https://github.com/malta.js/treizeez/issues) on the repository.
+If you encounter any issues or have suggestions for improvements, please don't hesitate to [open an issue](https://github.com/treizeez/malta.js/issues) on the repository.
 
 ## Installation
 
